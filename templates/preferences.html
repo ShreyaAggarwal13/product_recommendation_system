@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Preferences - ShopSmart{% endblock %}
+{% block content %}
+<h1 class="page-title">Tell Us What You Like</h1>
+<p class="subtitle">We'll use content-based AI to find products that match your taste.</p>
+
+<form id="preferences-form" class="pref-form">
+  <label>Preferred Category</label>
+  <select id="pref-category">
+    <option value="">Any</option>
+  </select>
+
+  <label>Price Range (₹)</label>
+  <div class="price-row">
+    <input type="number" id="pref-min-price" placeholder="Min">
+    <span>to</span>
+    <input type="number" id="pref-max-price" placeholder="Max">
+  </div>
+
+  <label>Preferred Brands</label>
+  <div id="brand-checkboxes" class="checkbox-grid"></div>
+
+  <label>Keywords / Interests</label>
+  <input type="text" id="pref-keywords" placeholder="e.g. lightweight, waterproof, premium">
+
+  <button type="submit" class="btn btn-primary full-width">Get Recommendations</button>
+</form>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/preferences.js"></script>
+{% endblock %}

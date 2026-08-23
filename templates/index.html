@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}ShopSmart - Home{% endblock %}
+{% block content %}
+<section class="hero">
+  <span class="float-icon fi-1">🛍️</span>
+  <span class="float-icon fi-2">🏷️</span>
+  <span class="float-icon fi-3">🛒</span>
+  <span class="float-icon fi-4">✨</span>
+  <h1>Find Products Picked Just For You</h1>
+  <p>Content-based AI recommendations using TF-IDF &amp; Cosine Similarity.</p>
+  <div class="hero-actions">
+    <a href="/products" class="btn btn-primary">Browse Products</a>
+    <a href="/preferences" class="btn btn-outline">Get Personalized Picks</a>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Shop by Category</h2>
+  <div id="category-grid" class="category-grid"></div>
+</section>
+
+<section>
+  <h2 class="section-title">Trending Now</h2>
+  <p class="subtitle">Our highest-rated picks across every category</p>
+  <div id="featured-grid" class="product-grid"></div>
+</section>
+
+<section>
+  <h2 class="section-title">Why ShopSmart</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <span class="feature-icon">🤖</span>
+      <h4>Smart Recommendations</h4>
+      <p>AI-powered picks based on TF-IDF &amp; cosine similarity, tailored to your taste.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🚚</span>
+      <h4>Free Shipping</h4>
+      <p>Free delivery on every order, no minimum spend required.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🔒</span>
+      <h4>Secure Shopping</h4>
+      <p>Your data and payments are always safe and protected.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">⭐</span>
+      <h4>Top Rated Products</h4>
+      <p>Every product is rated and reviewed by real shoppers like you.</p>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <h2>Stay in the Loop</h2>
+  <p>Get notified about new arrivals and exclusive deals.</p>
+  <form id="newsletter-form" class="newsletter-form">
+    <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+    <button type="submit" class="btn btn-primary">Subscribe</button>
+  </form>
+  <p id="newsletter-msg" class="newsletter-msg"></p>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/app.js"></script>
+<script src="/static/js/index.js"></script>
+<script>
+  (async function loadFeatured() {
+    try {
+      const products = await fetchJSON('/api/products');
+      const top = products.slice().sort((a, b) => b.rating - a.rating).slice(0, 8);
+      document.getElementById('featured-grid').innerHTML = top.map(p => productCardHTML(p, false)).join('');
+    } catch (e) {
+      console.error('Could not load featured products', e);
+    }
+  })();
+
+  document.getElementById('newsletter-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('newsletter-email').value;
+    document.getElementById('newsletter-msg').textContent = `Thanks! We'll send updates to ${email}.`;
+    this.reset();
+  });
+</script>
+{% endblock %}

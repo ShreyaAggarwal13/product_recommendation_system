@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}ShopSmart{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true">
+    <span class="bd bd-1">👜</span>
+    <span class="bd bd-2">💄</span>
+    <span class="bd bd-3">👗</span>
+    <span class="bd bd-4">👠</span>
+    <span class="bd bd-5">🎁</span>
+    <span class="bd bd-6">🕶️</span>
+    <span class="bd bd-7">⌚</span>
+    <span class="bd bd-8">🧴</span>
+  </div>
+
+  <header class="navbar">
+    <a href="/" class="logo">Shop<span>Smart</span></a>
+    <form class="nav-search" onsubmit="window.location.href='/products?q='+encodeURIComponent(this.q.value); return false;">
+      <input type="text" name="q" placeholder="Search products...">
+      <button type="submit">Search</button>
+    </form>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/products">Products</a>
+      <a href="/preferences">Get Recommendations</a>
+    </nav>
+  </header>
+
+  <div class="promo-marquee">
+    <div class="marquee-track">
+      <span>🛍️ FREE SHIPPING ON ALL ORDERS</span>
+      <span>🔥 NEW ARRIVALS EVERY WEEK</span>
+      <span>🏷️ UP TO 50% OFF SELECT ITEMS</span>
+      <span>⭐ AI-POWERED RECOMMENDATIONS JUST FOR YOU</span>
+      <span>🛍️ FREE SHIPPING ON ALL ORDERS</span>
+      <span>🔥 NEW ARRIVALS EVERY WEEK</span>
+      <span>🏷️ UP TO 50% OFF SELECT ITEMS</span>
+      <span>⭐ AI-POWERED RECOMMENDATIONS JUST FOR YOU</span>
+    </div>
+  </div>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    &copy; 2026 ShopSmart. Built as a college project.
+  </footer>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

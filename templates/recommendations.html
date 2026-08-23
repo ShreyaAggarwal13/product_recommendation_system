@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Recommendations - ShopSmart{% endblock %}
+{% block content %}
+<h1 class="page-title">Your Personalized Recommendations</h1>
+<p class="subtitle">Generated using TF-IDF + Cosine Similarity on your stated preferences.</p>
+<div id="rec-grid" class="product-grid"></div>
+<a href="/preferences" class="btn btn-outline" style="margin-top:24px;display:inline-block;">Edit Preferences</a>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/recommendations.js"></script>
+{% endblock %}
