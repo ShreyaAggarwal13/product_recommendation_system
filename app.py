@@ -101,13 +101,11 @@ def api_recommend():
     keywords = data.get('keywords', '')
 
     conn = get_db()
-    conn.execute('INSERT INTO user_preferences (category, min_price, max_price, brands, keywords) VALUES (?,?,?,?,?)',
-                 (category, min_price, max_price, ','.join(brands), keywords))
+    conn.execute('INSERT INTO user_preferences (category, min_price, max_price, brands, keywords) VALUES (?,?,?,?,?)',(category, min_price, max_price, ','.join(brands), keywords))
     conn.commit()
     conn.close()
 
-    recs = recommender.recommend(category=category, min_price=min_price, max_price=max_price,
-                                  brands=brands, keywords=keywords, top_n=12)
+    recs = recommender.recommend(category=category, min_price=min_price, max_price=max_price,brands=brands, keywords=keywords, top_n=12)
     return jsonify(recs)
 
 

@@ -9,8 +9,10 @@ async function loadCategories() {
   grid.innerHTML = categories.map(c => `
     <a class="category-card" href="/products?category=${encodeURIComponent(c)}"
        style="background-image: url('https://picsum.photos/seed/${encodeURIComponent(c)}/400/300')">
-      <span class="emoji">${CATEGORY_EMOJI[c] || '🛍️'}</span>
-      <span class="cat-name">${c}</span>
+      <span class="info-chip">
+        <span class="emoji">${CATEGORY_EMOJI[c] || '🛍️'}</span>
+        <span class="cat-name">${c}</span>
+      </span>
     </a>`).join('');
 }
 loadCategories();
