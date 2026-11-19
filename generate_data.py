@@ -1,6 +1,15 @@
 import random
 
 random.seed(42)
+CATEGORY_IMAGE = {
+    'Accessories': '/static/Images/Accessories.jpg',
+    'Beauty':      '/static/Images/Beauty.jpg',
+    'Books':       '/static/Images/Books.jpg',
+    'Clothing':    '/static/Images/Clothing.jpg',
+    'Electronics': '/static/Images/Electronics.jpg',
+    'Home':        '/static/Images/Home.jpg',
+    'Shoes':       '/static/Images/Shoes.jpg'
+}
 
 CATEGORY_DATA = {
     'Electronics': {
@@ -85,7 +94,7 @@ def generate_products():
             description = (f"{adj.capitalize()} {noun.lower()} by {brand}, crafted for everyday "
                             f"{category.lower()} needs. Combines quality, value and reliable performance.")
             features = ', '.join(feats)
-            image_url = f"https://picsum.photos/seed/{pid}/400/300"
+            image_url = f"https://loremflickr.com/400/300/{noun.lower().replace(' ', ',')}?lock={pid}"
             products.append({
                 'name': name, 'category': category, 'brand': brand,
                 'price': price, 'rating': rating, 'description': description,

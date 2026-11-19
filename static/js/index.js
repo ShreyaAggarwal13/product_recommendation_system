@@ -2,13 +2,21 @@ const CATEGORY_EMOJI = {
   Electronics: '💻', Clothing: '👕', Shoes: '👟', Beauty: '💄',
   Home: '🏠', Books: '📚', Accessories: '👜'
 };
-
+const CATEGORY_IMG = {
+  Accessories: '/static/Images/Accessories.jpg',
+  Beauty:      '/static/Images/Beauty.jpg',
+  Books:       '/static/Images/Books.jpg',
+  Clothing:    '/static/Images/Clothing.jpg',
+  Electronics: '/static/Images/Electronics.jpg',
+  Home:        '/static/Images/Home.jpg',
+  Shoes:       '/static/Images/Shoes.jpg'
+};
 async function loadCategories() {
   const categories = await fetchJSON('/api/categories');
   const grid = document.getElementById('category-grid');
   grid.innerHTML = categories.map(c => `
     <a class="category-card" href="/products?category=${encodeURIComponent(c)}"
-       style="background-image: url('https://picsum.photos/seed/${encodeURIComponent(c)}/400/300')">
+       style="background-image: url('${CATEGORY_IMG[c]}')">
       <span class="info-chip">
         <span class="emoji">${CATEGORY_EMOJI[c] || '🛍️'}</span>
         <span class="cat-name">${c}</span>
